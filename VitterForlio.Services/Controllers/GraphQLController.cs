@@ -18,9 +18,10 @@ namespace VitterFolio.Api.Controllers
         private readonly IDocumentExecuter _documentExecuter;
         private readonly ISchema _schema;
 
+        // test
         public GraphQLController(ISchema schema, IDocumentExecuter documentExecuter)
         {
-            _schema = schema;
+            _schema = schema; 
             _documentExecuter = documentExecuter;
         }
 
