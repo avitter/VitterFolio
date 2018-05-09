@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DebugType>pdbonly</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="PostSharp" Version="5.0.49" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Vitter.Core\Vitter.Core\Vitter.Core.csproj" />
+    <ProjectReference Include="..\VitterFolio.DataServices\VitterFolio.DataServices.csproj" />
+    <ProjectReference Include="..\VitterFolio.Dto\VitterFolio.Dto.csproj" />
+  </ItemGroup>
+
+</Project>
