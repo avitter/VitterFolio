@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using GraphQL;
 using GraphQL.Types;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using VitterFolio.Api.GraphQL;
@@ -26,6 +27,7 @@ namespace VitterFolio.Api.Controllers
         }
 
         [HttpPost]
+        //[EnableCors]
         //[Authorize]
         public async Task<IActionResult> Post([FromBody] GraphQLQuery query)
         {

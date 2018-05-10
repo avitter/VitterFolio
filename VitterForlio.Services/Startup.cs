@@ -39,7 +39,15 @@ namespace VitterForlioServices
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
-
+            services.AddCors(options =>
+            {
+                /////////////////////////////////
+                // POLICY FOR DEVELOPMENT ONLY
+                options.AddPolicy("vitterFolio",
+                    policy => policy.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+                // POLICY FOR DEVELOPMENT ONLY
+                /////////////////////////////////
+            });
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
             // Business Service Layer
@@ -108,6 +116,7 @@ namespace VitterForlioServices
             {
                 app.UseDeveloperExceptionPage();
             }
+            app.UseCors("vitterFolio");
 
             // GraphiQL
             app.UseGraphiQl();
