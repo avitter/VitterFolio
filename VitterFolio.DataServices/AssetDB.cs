@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 using Vitter.Core;
@@ -97,6 +98,48 @@ namespace VitterFolio.DataServices
             var response = new Response<Asset>()
             {
                 Data = Asset, 
+                Status = ResponseStatus.Success
+            };
+
+            return response;
+        }
+
+        [ExceptionHandler(AspectPriority = 1)]
+        public Response<List<PortfolioAsset>> GetPortfolioAssets()
+        {
+            var data = new List<PortfolioAsset>();
+            using (var command = _context.Database.GetDbConnection().CreateCommand())
+            {
+                // TODO: Move to Config
+                command.CommandText = "EXEC dbo.GetPortfolioAssets";
+                _context.Database.OpenConnection();
+
+                using (var result = command.ExecuteReader())
+                {
+                    while(result.Read())
+                    {
+                        // Build Portfolio Asset
+                        var portfolioAsset = new PortfolioAsset()
+                        {
+                            units = Convert.ToDouble(result["Units"]),
+                           
+                            asset = new Asset()
+                            {
+                                AssetId = Convert.ToInt32(result["AssetID"]),
+                                Name = result["Name"].ToString(),
+                                Symbol = result["Symbol"].ToString(),
+                            }
+                        };
+
+                        // Add Portofolio Asset
+                        data.Add(portfolioAsset);
+                    }
+                }
+            }
+
+            var response = new Response<List<PortfolioAsset>>()
+            {
+                Data = data,
                 Status = ResponseStatus.Success
             };
 

@@ -95,8 +95,9 @@ namespace VitterForlioServices
                     // Register GraphQL Resolvers - Implement IResolver
                     x.FromAssemblies(assemblies)
                         .AddClasses(classes => classes.AssignableTo(typeof(IResolve)))
-                            .AsImplementedInterfaces()
-                            .WithScopedLifetime();
+                        .AsSelf();
+                    //.AsImplementedInterfaces()
+                    //.WithScopedLifetime();
 
                     // Register GraphQL Types - Implement IGraphType
                     x.FromAssemblies(assemblies)
