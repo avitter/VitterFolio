@@ -135,6 +135,8 @@ namespace VitterFolio.DataServices
                         data.Add(portfolioAsset);
                     }
                 }
+
+                //_context.Database.CloseConnection();
             }
 
             var response = new Response<List<PortfolioAsset>>()

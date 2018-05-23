@@ -14,7 +14,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Vitter.Core\Vitter.Core\Vitter.Core.csproj" />
     <ProjectReference Include="..\VitterFolio.DataServices\VitterFolio.DataServices.csproj" />
     <ProjectReference Include="..\VitterFolio.Dto\VitterFolio.Dto.csproj" />
   </ItemGroup>
